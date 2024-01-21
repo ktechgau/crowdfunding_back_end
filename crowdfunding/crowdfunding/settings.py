@@ -29,10 +29,11 @@ SECRET_KEY = os.environ.get(
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get(
- 'DJANGO_DEBUG',
- 'False'
-) != 'False'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    'DJANGO_DEBUG',
+    'False'
+)  != 'False'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 #ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['*']
@@ -45,7 +46,7 @@ CSRF_TRUSTED_ORIGINS = ['https://*.fly.dev']
 INSTALLED_APPS = [
     'projects.apps.ProjectsConfig',
     'users.apps.UsersConfig',
-    'rest_framework',
+        'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
     'django.contrib.admin',
