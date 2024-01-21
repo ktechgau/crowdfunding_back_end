@@ -14,6 +14,7 @@ RUN set -ex && \
     pip install --upgrade pip && \
     pip install -r /tmp/requirements.txt && \
     rm -rf /root/.cache/
+
 COPY crowdfunding/ /code/
 
 #ENV SECRET_KEY "W4rbucDYRQUUACgmAtcAAyfiajbax1v9tuG5Cl24NGDRyJcTYF"
@@ -22,4 +23,4 @@ RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
-CMD ["code/run.sh"]
+CMD ["/code/run.sh"]
