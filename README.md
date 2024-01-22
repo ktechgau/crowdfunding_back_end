@@ -51,12 +51,12 @@ OpenDoor is intended for anyone with a plan to pursue a study path to further th
 ---
 
 ### How to:
-#### Register a new user (via Insomnia)
+#### - Register a new user (via Insomnia)
 
-
-1) Choose POST method, URL: http://localhost:8000/users/
-2) Choose JSON as the text option
-3) Enter the following JSON attributes:
+1) Select a new HTTP Request 
+2) Choose POST method, URL: https://drf-patient-pond-1055.fly.dev/users/
+3) Choose JSON as the text option
+4) Enter the following JSON attributes:
 ```
 {
 		"username": "{enter your username}",
@@ -66,22 +66,54 @@ OpenDoor is intended for anyone with a plan to pursue a study path to further th
 		"email": "{enter your email}"
 	}
 ```
-4) Click Send
-5) A new user will be created.
+1) Click Send
+2) A new user will be created.
+3) To recieve an authentication token, select a new HTTP Request
+4) Choose POST method, URL: https://drf-patient-pond-1055.fly.dev/api-token-auth/
+5) Choose JSON as the text option
+6)  Enter the following JSON attributes:
+    ```
+    {
+		"username": "{enter the registered username}",
+		"password" : "{enter the password}"
+	}
+    ```
+7)  Click Send and you will see a token. (Copy this to use for authentication purposes)
 
-##### Example:
+###### Example (new user registraion):
 ![Screenshot of Insomnia with POST method for creating a new user](crowdfunding/projects/images/new-user-example.png)
 
-#### Create a new project (via Insomnia)
+##### Example (user authentication token):
+![Screenshot of Insomnia with POST method for creating a token](crowdfunding/projects/images/token2.png)
 
-6) To create a new project, you need to be logged in and authorised. An authorised token first needs to be administered.
-7) 
-8) Choose POST method, URL: http://localhost:8000/projects/
-9) Choose JSON as the text option
-10) Enter the following JSON attributes:
+
+#### - Create a new project (via Insomnia)
+
+1) To create a new project, you need to be logged in and authorised. 
+2) Choose POST method, URL: https://drf-patient-pond-1055.fly.dev/projects/
+3) Choose JSON as the text option
+4)  Enter the following JSON attributes:
+   ```
+{
+	"owner": "{id of owner}",
+	"title": "{title}",
+	"description": "{A description}",
+	"goal": {Goal amount},
+	"image": "{url of image}",
+	"is_open": {false or true - is the project open for supporters},
+	"date_created": "{date}"
+}
    ```
 
-   ```
+5) Open the "Auth" tab and choose "Bearer Token"
+6) Enter the token number of the user creating the project
+7) Under "Prefix" type "Token"
+8) Click Send and a new project will be created under that user's login details.
+  
+  ##### Example (Creating a new project):
+![Screenshot of Insomnia with POST method for creating new project](crowdfunding/projects/images/newproject.png)
+
+
 ----
 ### API Spec
 
