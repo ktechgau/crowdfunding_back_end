@@ -11,12 +11,12 @@ from .permissions import IsOwnerOrReadOnly
 class ProjectList(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
 
-    def get(self, request):
+    def get(self, request):     #gets all projects
         projects = Project.objects.all()
         serializer = ProjectSerializer(projects, many=True)
         return Response(serializer.data)
     
-    def post(self, request):
+    def post(self, request):    #creates a new project
         serializer = ProjectSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(owner=request.user)
@@ -130,3 +130,6 @@ class PledgeDetail(APIView):
         pledge = self.get_object(pk)
         pledge.delete()
         return Response(status=status.HTTP_200_OK)
+    
+    ## Counter method - pledge amount
+    

@@ -18,6 +18,7 @@ class PledgeDetailSerializer(PledgeSerializer):
         instance.save()
         return instance
 
+
 class ProjectSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.id')
     class Meta:
@@ -39,3 +40,4 @@ class ProjectDetailSerializer(ProjectSerializer):
         instance.owner = validated_data.get('owner', instance.owner)
         instance.save()
         return instance
+
