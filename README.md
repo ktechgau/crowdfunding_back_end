@@ -39,7 +39,8 @@ OpenDoor is intended for anyone with a plan to pursue a study path to further th
     * Summarised details about the project being supported, amount, comments, option to stay anonymous
     * User must be logged in to support a project.
 
-### Screenshots 
+
+## Screenshots 
 #### GET method
  ![Screenshot of Insomnia with GET method with an endpoint](crowdfunding/projects/images/GET.png)
 #### POST Method
@@ -47,6 +48,41 @@ OpenDoor is intended for anyone with a plan to pursue a study path to further th
 #### Token Feature
  ![Screenshot of Insomnia with Token being returned](crowdfunding/projects/images/GET.png)
 
+---
+
+### How to:
+#### Register a new user (via Insomnia)
+
+
+1) Choose POST method, URL: http://localhost:8000/users/
+2) Choose JSON as the text option
+3) Enter the following JSON attributes:
+```
+{
+		"username": "{enter your username}",
+		"password": "{enter your password}",
+		"first_name": "{enter your first name}",
+		"last_name": "{ener your last name}",
+		"email": "{enter your email}"
+	}
+```
+4) Click Send
+5) A new user will be created.
+
+##### Example:
+![Screenshot of Insomnia with POST method for creating a new user](crowdfunding/projects/images/new-user-example.png)
+
+#### Create a new project (via Insomnia)
+
+6) To create a new project, you need to be logged in and authorised. An authorised token first needs to be administered.
+7) 
+8) Choose POST method, URL: http://localhost:8000/projects/
+9) Choose JSON as the text option
+10) Enter the following JSON attributes:
+   ```
+
+   ```
+----
 ### API Spec
 
 |  URL | HTTP Method | Purpose | Request Body | Success Response Code |Authentication/Authorisation |
@@ -65,6 +101,6 @@ OpenDoor is intended for anyone with a plan to pursue a study path to further th
 
 
 
-
+------
 ### DB Schema
 ![](crowdfunding/projects/images/ERD.png)
