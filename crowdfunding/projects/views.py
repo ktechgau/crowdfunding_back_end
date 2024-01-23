@@ -7,6 +7,7 @@ from .serializers import ProjectSerializer, PledgeSerializer,ProjectDetailSerial
 from django.http import Http404
 from rest_framework import status,permissions
 from .permissions import IsOwnerOrReadOnly
+from django.db.models import Sum
 
 class ProjectList(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
@@ -43,10 +44,12 @@ class ProjectDetail(APIView):
         except Project.DoesNotExist:
             raise Http404
     
-    def get(self, request, pk):
+    def get(self, request, pk): ##includes a response with a sum of pledges for that project
         project = self.get_object(pk)
         serializer = ProjectDetailSerializer(project)
-        return Response(serializer.data)
+        total_pledges_amount = project.pledges.aggregate(Sum('amount') or 0)
+        response_data = {serializer.data, total_pledges_amount}
+        return Response(response_data)
     
     ## Update method - Projects
     def put(self, request, pk):
@@ -67,8 +70,15 @@ class ProjectDetail(APIView):
     def delete(self, request, pk):
         project = self.get_object(pk)
         project.delete()
-        return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_200_OK)  
 
+## Getting the sum of pledges for that particular project
+    #def get_total_pledges_amount(self, request, pk):
+        #project = self.get_object(pk)
+        #total_pledges_amount = project.pledges.aggregate(Sum('amount') or 0)
+        #return Response (total_pledges_amount)
+
+    
 
 class PledgeList(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
@@ -131,5 +141,6 @@ class PledgeDetail(APIView):
         pledge.delete()
         return Response(status=status.HTTP_200_OK)
     
-    ## Counter method - pledge amount
+   
     
+       

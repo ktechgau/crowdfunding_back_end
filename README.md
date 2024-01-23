@@ -137,3 +137,8 @@ OpenDoor is intended for anyone with a plan to pursue a study path to further th
 ------
 ### DB Schema
 ![](crowdfunding/projects/images/ERD.png)
+
+##### References and Resources:
+* [Aggregation in Django](https://docs.djangoproject.com/en/5.0/topics/db/aggregation/)
+
+
