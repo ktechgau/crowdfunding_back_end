@@ -19,8 +19,8 @@ class PledgeDetailSerializer(PledgeSerializer):
         instance.save()
         return instance
     
-
-
+    #def total(pledge_total):
+        #return total
 class ProjectSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.id')
     class Meta:
@@ -44,3 +44,4 @@ class ProjectDetailSerializer(ProjectSerializer):
         instance.save()
         return instance
 
+   
