@@ -17,11 +17,7 @@ class Project(models.Model):
     related_name='owned_projects'
  )
 
-# Getting sum of pledge for that project
-#@property
-#def pledge_total(self):
-   #return self.pledges.aggregate(
-      #total=Sum('amount'))['total']
+
 
 class Pledge(models.Model):
     amount = models.IntegerField()

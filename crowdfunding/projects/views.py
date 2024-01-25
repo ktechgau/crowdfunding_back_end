@@ -3,14 +3,14 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Project, Pledge
-from .serializers import ProjectSerializer, PledgeSerializer,ProjectDetailSerializer, PledgeDetailSerializer
+from .serializers import ProjectSerializer, PledgeSerializer,ProjectDetailSerializer
 from django.http import Http404
 from rest_framework import status,permissions
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnlyProject, IsOwnerOrReadOnlyPledge
 from django.db.models import Sum
 
 class ProjectList(APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnlyProject]
 
     def get(self, request):     #gets all projects
         projects = Project.objects.all()
@@ -33,7 +33,7 @@ class ProjectList(APIView):
 class ProjectDetail(APIView):
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
-        IsOwnerOrReadOnly
+        IsOwnerOrReadOnlyProject
     ]
     
     def get_object(self, pk):
@@ -44,12 +44,10 @@ class ProjectDetail(APIView):
         except Project.DoesNotExist:
             raise Http404
     
-    def get(self, request, pk): ##includes a response with a sum of pledges for that project
+    def get(self, request, pk): 
         project = self.get_object(pk)
         serializer = ProjectDetailSerializer(project)
-        total_pledges_amount = project.pledges.aggregate(Sum('amount') or 0)
-        response_data = {serializer.data, total_pledges_amount}
-        return Response(response_data)
+        return Response(serializer.data)
     
     ## Update method - Projects
     def put(self, request, pk):
@@ -81,7 +79,7 @@ class ProjectDetail(APIView):
     
 
 class PledgeList(APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnlyPledge]
 
     def get(self, request):
         pledges = Pledge.objects.all()
@@ -104,7 +102,7 @@ class PledgeList(APIView):
 class PledgeDetail(APIView):
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
-        IsOwnerOrReadOnly
+        IsOwnerOrReadOnlyPledge
     ]
     
     def get_object(self, pk):
@@ -117,13 +115,13 @@ class PledgeDetail(APIView):
     
     def get(self, request, pk):
         pledge = self.get_object(pk)
-        serializer = PledgeDetailSerializer(pledge)
+        serializer = PledgeSerializer(pledge)
         return Response(serializer.data)
     
     ## Update method - Pledge
     def put(self, request, pk):
         pledge = self.get_object(pk)
-        serializer = PledgeDetailSerializer(
+        serializer = PledgeSerializer(
         instance=pledge,
         data=request.data,
         partial=True

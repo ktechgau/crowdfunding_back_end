@@ -3,13 +3,14 @@ from .models import Project, Pledge
 
 
 
+
 class PledgeSerializer(serializers.ModelSerializer):
+    supporter = serializers.ReadOnlyField(source='supporter.id')
     class Meta:
-        supporter = serializers.ReadOnlyField(source='supporter.id')
         model = Pledge
         fields = '__all__'
 
-class PledgeDetailSerializer(PledgeSerializer):
+class PledgeDetailSerializer(PledgeSerializer):   
     def update(self, instance, validated_data):
         instance.amount = validated_data.get('amount', instance.amount)
         instance.comment = validated_data.get('comment', instance.comment)
@@ -19,8 +20,7 @@ class PledgeDetailSerializer(PledgeSerializer):
         instance.save()
         return instance
     
-    #def total(pledge_total):
-        #return total
+   
 class ProjectSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.id')
     class Meta:
@@ -29,7 +29,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 class ProjectDetailSerializer(ProjectSerializer):
     pledges = PledgeSerializer(many=True, read_only=True)
-    total_pledges_amount = serializers.SerializerMethodField()
+ 
 
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
