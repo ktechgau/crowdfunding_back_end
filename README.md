@@ -143,5 +143,6 @@ OpenDoor is intended for anyone with a plan to pursue a study path to further th
 
 * [Response() Function](https://www.django-rest-framework.org/api-guide/responses/#responses)
 
+* [Model Field - Choices](https://docs.djangoproject.com/en/5.0/ref/models/fields/)
 
-
+* [PrimaryKeyRelatedField](https://www.django-rest-framework.org/api-guide/relations/#primarykeyrelatedfield)
