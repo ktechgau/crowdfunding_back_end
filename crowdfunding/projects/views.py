@@ -69,13 +69,6 @@ class ProjectDetail(APIView):
         project = self.get_object(pk)
         project.delete()
         return Response(status=status.HTTP_200_OK)  
-
-## Getting the sum of pledges for that particular project
-    #def get_total_pledges_amount(self, request, pk):
-        #project = self.get_object(pk)
-        #total_pledges_amount = project.pledges.aggregate(Sum('amount') or 0)
-        #return Response (total_pledges_amount)
-
     
 
 class PledgeList(APIView):
