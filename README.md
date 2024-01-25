@@ -141,4 +141,7 @@ OpenDoor is intended for anyone with a plan to pursue a study path to further th
 ##### References and Resources:
 * [Aggregation in Django](https://docs.djangoproject.com/en/5.0/topics/db/aggregation/)
 
+* [Response() Function](https://www.django-rest-framework.org/api-guide/responses/#responses)
+
+
 
