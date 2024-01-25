@@ -44,10 +44,13 @@ class ProjectDetail(APIView):
         except Project.DoesNotExist:
             raise Http404
     
+    ## Getting the amount yet to be raised for a project
     def get(self, request, pk): 
         project = self.get_object(pk)
         serializer = ProjectDetailSerializer(project)
-        return Response(serializer.data)
+        to_raise = serializer.amount_to_raise(project)
+        return Response({'project':serializer.data, 
+                         'amount_to_raise':to_raise})
     
     ## Update method - Projects
     def put(self, request, pk):
@@ -64,12 +67,12 @@ class ProjectDetail(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
         )
-## Delete method - Projects
+    ## Delete method - Projects
     def delete(self, request, pk):
         project = self.get_object(pk)
         project.delete()
         return Response(status=status.HTTP_200_OK)  
-    
+
 
 class PledgeList(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnlyPledge]
@@ -133,5 +136,19 @@ class PledgeDetail(APIView):
         return Response(status=status.HTTP_200_OK)
     
    
+## Getting the amount yet to be raised for pledges to reach the project goal
+
+#class AmountToRaise(APIView):
+    #permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnlyProject]
     
-       
+    #def get_object(self, pk):
+        #try:
+            #return Project.objects.get(pk=pk)
+        #except Project.DoesNotExist:
+            #raise Http404
+
+    #def get(self,request,pk):
+        #project=self.get_object(pk)
+        #serializer=ProjectDetailSerializer(project)
+        #to_raise = serializer.amount_to_raise(project)
+        #return Response ({'amount_to_raise':to_raise}) ##Displays and returns a json field

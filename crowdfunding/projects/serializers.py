@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Project, Pledge
-
+from django.db.models import Sum
 
 
 
@@ -26,6 +26,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'  
+    
 
 class ProjectDetailSerializer(ProjectSerializer):
     pledges = PledgeSerializer(many=True, read_only=True)
@@ -44,4 +45,7 @@ class ProjectDetailSerializer(ProjectSerializer):
         instance.save()
         return instance
 
-   
+    def amount_to_raise(self, instance):
+        sum_of_pledges = instance.pledges.aggregate(Sum('amount'))['amount__sum']
+        amount_to_go = instance.goal - sum_of_pledges
+        return amount_to_go
