@@ -5,44 +5,44 @@ from django.db.models import Sum
 #Creating a category list 
 class Category(models.Model):
 
-   AGRI = 'Agriculture'
-   ARCHITECTURE = 'Architecture, Construction & Planning'
-   BUSINESS = 'Business Management & Entrepreneurship'
-   CREATIVE = 'Creative arts & Design'
-   EDUCATION = 'Teaching, Education & Training'
-   ENGINEERING = 'Engineering, Automation & Technology'
-   ENVIRONMENTAL = 'Environmental Science & Sustainability'
-   HEALTH = 'Health, Medicine, Psychology'
-   IT = 'IT and Computing'
-   LAW = 'Law, Paralegal'
-   MEDIA = 'Media & Communications'
-   PERSONAL = 'Personal Care, Beauty & Hair, Fitness'
-   SCIENCES = 'Sciences and Mathematics'
-   SOCIETY = 'Society, Culture & Humanities'
-   TRAVEL = 'Travel, Tourism & Hospitality'
-   VET = 'Veterinary Medicine'
-   OTHER = 'Other'
+   # AGRI = 'Agriculture'
+   # ARCHITECTURE = 'Architecture, Construction & Planning'
+   # BUSINESS = 'Business Management & Entrepreneurship'
+   # CREATIVE = 'Creative arts & Design'
+   # EDUCATION = 'Teaching, Education & Training'
+   # ENGINEERING = 'Engineering, Automation & Technology'
+   # ENVIRONMENTAL = 'Environmental Science & Sustainability'
+   # HEALTH = 'Health, Medicine, Psychology'
+   # IT = 'IT and Computing'
+   # LAW = 'Law, Paralegal'
+   # MEDIA = 'Media & Communications'
+   # PERSONAL = 'Personal Care, Beauty & Hair, Fitness'
+   # SCIENCES = 'Sciences and Mathematics'
+   # SOCIETY = 'Society, Culture & Humanities'
+   # TRAVEL = 'Travel, Tourism & Hospitality'
+   # VET = 'Veterinary Medicine'
+   # OTHER = 'Other'
 
-   CATEGORY_CHOICES=[
-      (AGRI, 'Agriculture'),
-      (ARCHITECTURE, 'Architecture, Construction & Planning'),
-      (BUSINESS, 'Business Management & Entrepreneurship'),
-      (CREATIVE, 'Creative arts & Design'),
-      (EDUCATION, 'Teaching, Education & Training'),
-      (ENGINEERING, 'Engineering, Automation & Technology'),
-      (ENVIRONMENTAL, 'Environmental Science & Sustainability'),
-      (HEALTH, 'Health, Medicine, Psychology'),
-      (IT, 'IT and Computing'),
-      (LAW, 'Law, Paralegal'),
-      (MEDIA, 'Media & Communications'),
-      (PERSONAL, 'Personal Care, Beauty & Hair, Fitness'),
-      (SCIENCES, 'Sciences and Mathematics'),
-      (SOCIETY, 'Society, Culture & Humanities'),
-      (TRAVEL, 'Travel, Tourism & Hospitality'),
-      (VET, 'Veterinary Medicine'),
-      (OTHER, 'Other'),
-   ]
-   category = models.CharField(max_length=200, choices=CATEGORY_CHOICES, default=AGRI)
+   CATEGORY_CHOICES={
+      ("AGRI", 'Agriculture'),
+      ("ARCHITECTURE", 'Architecture, Construction & Planning'),
+      ("BUSINESS", 'Business Management & Entrepreneurship'),
+      ("CREATIVE", 'Creative arts & Design'),
+      ("EDUCATION", 'Teaching, Education & Training'),
+      ("ENGINEERING", 'Engineering, Automation & Technology'),
+      ("ENVIRONMENTAL", 'Environmental Science & Sustainability'),
+      ("HEALTH", 'Health, Medicine, Psychology'),
+      ("IT", 'IT and Computing'),
+      ("LAW", 'Law, Paralegal'),
+      ("MEDIA", 'Media & Communications'),
+      ("PERSONAL", 'Personal Care, Beauty & Hair, Fitness'),
+      ("SCIENCES", 'Sciences and Mathematics'),
+      ("SOCIETY", 'Society, Culture & Humanities'),
+      ("TRAVEL", 'Travel, Tourism & Hospitality'),
+      ("VET", 'Veterinary Medicine'),
+      ("OTHER", 'Other'),
+   }
+   category = models.CharField(max_length=200, choices=CATEGORY_CHOICES, default="AGRI")
    
 
    def __str__(self):
