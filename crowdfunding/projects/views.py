@@ -44,11 +44,11 @@ class ProjectDetail(APIView):
         except Project.DoesNotExist:
             raise Http404
     
-    ## Getting the amount yet to be raised for a project
+    
     def get(self, request, pk): 
         project = self.get_object(pk)
         serializer = ProjectDetailSerializer(project)
-        to_raise = serializer.amount_to_raise(project)
+        to_raise = serializer.amount_to_raise(project)  ## Getting the amount yet to be raised for a project
         return Response({'project':serializer.data, 
                          'amount_to_raise':to_raise})
     
