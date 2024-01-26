@@ -50,7 +50,7 @@ from django.db.models import Sum
 
 class Project(models.Model):
 
-   CATEGORY_CHOICES={
+   CATEGORY_CHOICES=[
       ("AGRI", 'Agriculture'),
       ("ARCHITECTURE", 'Architecture, Construction & Planning'),
       ("BUSINESS", 'Business Management & Entrepreneurship'),
@@ -68,7 +68,7 @@ class Project(models.Model):
       ("TRAVEL", 'Travel, Tourism & Hospitality'),
       ("VET", 'Veterinary Medicine'),
       ("OTHER", 'Other'),
-   }
+   ]
 
    title = models.CharField(max_length=200)
    description = models.TextField()
