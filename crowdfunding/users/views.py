@@ -7,9 +7,10 @@ from .serializers import CustomUserSerializer, CustomUserDetailSerializer
 from.permissions import IsOwnerOrReadOnlyUser
 
 class CustomUserList(APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnlyUser]
+    
     
     def get(self, request):
+        permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnlyUser]
         users = CustomUser.objects.all()
         serializer = CustomUserSerializer(users, many=True)
         return Response(serializer.data)

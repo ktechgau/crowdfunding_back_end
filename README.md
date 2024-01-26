@@ -103,6 +103,8 @@ OpenDoor is intended for anyone with a plan to pursue a study path to further th
 	"image": "{url of image}",
 	"is_open": {false or true - is the project open for supporters},
 	"date_created": "{date}"
+  "category": "Agriculture{or other category}"
+
 }
    ```
 

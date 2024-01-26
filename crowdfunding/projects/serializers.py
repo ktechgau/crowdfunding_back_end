@@ -49,5 +49,8 @@ class ProjectDetailSerializer(ProjectSerializer):
 
     def amount_to_raise(self, instance):
         sum_of_pledges = instance.pledges.aggregate(Sum('amount'))['amount__sum']
-        amount_to_go = instance.goal - sum_of_pledges
+        if sum_of_pledges is not None:  #an integer and 'none' value math operation is not supported by python
+            amount_to_go = instance.goal - sum_of_pledges
+        else:
+            amount_to_go = instance.goal
         return amount_to_go
