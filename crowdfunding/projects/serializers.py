@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Project, Pledge
+from .models import Project, Pledge, Category
 from django.db.models import Sum
 
 
@@ -23,6 +23,8 @@ class PledgeDetailSerializer(PledgeSerializer):
    
 class ProjectSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.id')
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())    #One category can be chosen for one project
+
     class Meta:
         model = Project
         fields = '__all__'  
@@ -30,7 +32,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 class ProjectDetailSerializer(ProjectSerializer):
     pledges = PledgeSerializer(many=True, read_only=True)
- 
+    category = serializers.StringRelatedField(source='category.category')    #Category can be seen in project details
 
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)

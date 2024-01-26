@@ -42,8 +42,9 @@ class Category(models.Model):
       (VET, 'Veterinary Medicine'),
       (OTHER, 'Other'),
    ]
-   name = models.CharField(max_length=200, choices=CATEGORY_CHOICES)
+   category = models.CharField(max_length=200, choices=CATEGORY_CHOICES, default=AGRI)
    
+
    def __str__(self):
       return self.name
 
@@ -61,7 +62,8 @@ class Project(models.Model):
  )
    category = models.ForeignKey(
    Category, 
-   on_delete=models.CASCADE )
+   on_delete=models.CASCADE, 
+   default = 'AGRI')
 
 
 class Pledge(models.Model):
