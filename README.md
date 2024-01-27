@@ -122,16 +122,16 @@ OpenDoor is intended for anyone with a plan to pursue a study path to further th
 
 |  URL | HTTP Method | Purpose | Request Body | Success Response Code |Authentication/Authorisation |
 | ---  | ----------- | ------- | ------------ | --------------------- |----------------------------|
-|/projects/|POST|Creates a project|ASK ABOUT THIS SECTION|201|Must be logged in|
-|/projects/|GET|List of all projects||200|N/A|
-|/projects/<int:pk>/|GET|Returns a single project||200|N/A|
-|/projects/<int:pk>/|PUT|Updates that single project||200|Must be logged in & is project owner|
-|/projects/<int:pk>/|DELETE|Deletes an individual project||200|Must be logged in & is project owner|
-|/pledges/<int:pk>/|PUT|Updates a single pledge||200|Must be logged in & is supporter|
-|/pledges/<int:pk>/|DELETE|Deletes an single pledge||200|Must be logged in & is supporter|
-|/pledges/|POST|Creates a new pledge||201|Must be logged in|
-|/pledges/|GET|Lists all pledges||200|N/A|
-|/users/|POST|Creates a new user|||201|N/A
+|/projects/|POST|Creates a project|Title, Description, Goal, Image, Is_open,Date Created, IT|201|Must be logged in|
+|/projects/|GET|List of all projects|N/A|200|N/A|
+|/projects/<int:pk>/|GET|Returns a single project|N/A|200|N/A|
+|/projects/<int:pk>/|PUT|Updates that single project|Title, Description, Goal, Image, Is_Open, Date Created, Category|200|Must be logged in & is project owner|
+|/projects/<int:pk>/|DELETE|Deletes an individual project|N/A|200|Must be logged in & is project owner|
+|/pledges/<int:pk>/|PUT|Updates a single pledge|Auth |AuthToken, Amount, Comment, Anonymous|200|Must be logged in & is supporter|
+|/pledges/<int:pk>/|DELETE|Deletes an single pledge|N/A|200|Must be logged in & is supporter|
+|/pledges/|POST|Creates a new pledge|Auth |AuthToken, Amount, Comment, Anonymous|201|Must be logged in|
+|/pledges/|GET|Lists all pledges|N/A|200|N/A|
+|/users/|POST|Creates a new user|Username, Password||201|N/A
 |   |    |   |   |   |   |
 
 
