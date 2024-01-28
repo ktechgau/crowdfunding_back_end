@@ -60,7 +60,7 @@ OpenDoor is intended for anyone with a plan to pursue a study path to further th
 #### - Register a new user (via Insomnia)
 
 1) Select a new HTTP Request 
-2) Choose POST method, URL: https://drf-patient-pond-1055.fly.dev/users/
+2) Choose POST method, URL: https://drf-patient-pond-1056.fly.dev/users/
 3) Choose JSON as the text option
 4) Enter the following JSON attributes:
 ```
@@ -75,7 +75,7 @@ OpenDoor is intended for anyone with a plan to pursue a study path to further th
 1) Click Send
 2) A new user will be created.
 3) To recieve an authentication token, select a new HTTP Request
-4) Choose POST method, URL: https://drf-patient-pond-1055.fly.dev/api-token-auth/
+4) Choose POST method, URL: https://drf-patient-pond-1056.fly.dev/api-token-auth/
 5) Choose JSON as the text option
 6)  Enter the following JSON attributes:
     ```
