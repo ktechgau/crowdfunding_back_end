@@ -1,5 +1,8 @@
 # Crowdfunding (Back End with Django REST)
-![OpenDoor logo](crowdfunding/projects/images/opendoor.png)
+
+<p align="center">
+  <img src="crowdfunding/projects/images/opendoor.png">
+</p>
 
 ## OpenDoor by Karla Gaudet
 
