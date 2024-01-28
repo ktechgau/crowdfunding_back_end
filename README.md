@@ -1,7 +1,9 @@
-# Crowdfunding Back End
+# Crowdfunding (Back End with Django REST)
+![OpenDoor logo](crowdfunding/projects/images/opendoor.png)
+
 ## OpenDoor by Karla Gaudet
 
-[OpenDoor Website](https://drf-patient-pond-1055.fly.dev/projects/)
+[View live site here](https://drf-patient-pond-1055.fly.dev/projects/)
 
 OpenDoor is a crowdfunding site that allows people to ask for financial sponsorships that will aid the sponsee to pay for study fees and/or study equipment and tools.
 Link to OpenDoor: {{[OpenDoor](insert link here).}}
