@@ -6,7 +6,7 @@
 
 ## OpenDoor by Karla Gaudet
 
-[View live site here](https://drf-patient-pond-1055.fly.dev/projects/)
+[View live site here](https://drf-patient-pond-1056.fly.dev/projects/)
 
 OpenDoor is a crowdfunding site that allows people to ask for financial sponsorships that will aid the sponsee to pay for study fees and/or study equipment and tools.
 Link to OpenDoor: {{[OpenDoor](insert link here).}}
@@ -96,7 +96,7 @@ OpenDoor is intended for anyone with a plan to pursue a study path to further th
 #### - Create a new project (via Insomnia)
 
 1) To create a new project, you need to be logged in and authorised. 
-2) Choose POST method, URL: https://drf-patient-pond-1055.fly.dev/projects/
+2) Choose POST method, URL: https://drf-patient-pond-1056.fly.dev/projects/
 3) Choose JSON as the text option
 4)  Enter the following JSON attributes:
    ```
