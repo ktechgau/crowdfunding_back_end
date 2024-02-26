@@ -1,6 +1,8 @@
 from django.shortcuts import render
 # Create your views here.
 from rest_framework.views import APIView
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from .models import Project, Pledge
 from .serializers import ProjectSerializer, PledgeSerializer,ProjectDetailSerializer
@@ -136,19 +138,20 @@ class PledgeDetail(APIView):
         return Response(status=status.HTTP_200_OK)
     
    
-## Getting the amount yet to be raised for pledges to reach the project goal
+class CustomAuthToken(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class( data=request.data, context={'request':request}) 
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({
+                'token': token.key,
+                'user_id': user.pk,
+                'username':user.username
+            })
+                        
 
-#class AmountToRaise(APIView):
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnlyProject]
-    
-    #def get_object(self, pk):
-        #try:
-            #return Project.objects.get(pk=pk)
-        #except Project.DoesNotExist:
-            #raise Http404
 
-    #def get(self,request,pk):
-        #project=self.get_object(pk)
-        #serializer=ProjectDetailSerializer(project)
-        #to_raise = serializer.amount_to_raise(project)
-        #return Response ({'amount_to_raise':to_raise}) ##Displays and returns a json field
+        
+       
+
